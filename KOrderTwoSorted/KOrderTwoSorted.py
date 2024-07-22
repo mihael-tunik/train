@@ -41,8 +41,25 @@ def median_two_sorted_log(x, y):
     else:       
        return (lm + find_k_order_two_sorted(x, y, n1, n2, n//2)) / 2
 
+def merge_two_sorted(x, y):
+    l, m, result = 0, 0, []
+    while l != len(x) and m != len(y):
+        if x[l] < y[m]:
+            result.append(x[l])
+            l += 1
+        else:
+            result.append(y[m])
+            m += 1    
+    while l != len(x):
+        result.append(x[l])
+        l += 1    
+    while m != len(y):
+        result.append(y[m])
+        m += 1
+    return result
+    
 def median_two_sorted_linear(x, y):
-    merged = sorted(x + y)
+    merged = merge_two_sorted(x, y)
     n = len(merged)    
     if n % 2 == 1:
         return merged[(n-1)//2]
