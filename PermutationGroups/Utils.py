@@ -16,3 +16,5 @@ def inv(x):
     for i in range(0, len(x)):
         res[x[i] - 1] = i + 1
     return tuple(res)
+    
+
