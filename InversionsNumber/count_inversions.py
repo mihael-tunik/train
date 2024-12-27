@@ -57,7 +57,7 @@ def inversions_flag_array(a):
     n, cnt, M = len(a), 0, max(a) 
     T = [0] * (M + 1)
     for i in range(0, n):
-        T[a[i]] = 1
+        T[a[i]] += 1
         s = 0
         for j in range(a[i] + 1, M+1):
             s += T[j]     
@@ -84,7 +84,9 @@ def inversions_fenwick(a):
 
     return cnt
     
-a = [12, 8, 5, 3, 1, 2, 10, 7, 0]
+a = [12, 12, 8, 5, 3, 1, 2, 10, 7, 0]
 print(inversions_base(a))
 print(inversions_flag_array(a))
 print(inversions_fenwick(a))
+
+print('')
