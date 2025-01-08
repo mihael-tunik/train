@@ -2,6 +2,35 @@ import random
 
 random.seed(12345)
 
+# O(n ^ 2)
+def sum_variety_subarray_bruteforce(numbers):    
+    variety = set()
+    
+    for i in range(0, len(numbers)):
+        for j in range(0, len(numbers)):
+            s = sum(numbers[i: j+1])
+            variety.add(s)
+                
+    return variety
+    
+def sum_variety_subarray_linear(numbers, idx):
+    # every call for O(n):
+    l1,_,_ = opt_subarray_kadane(numbers[:idx], mode='min')
+    l2,_,_ = opt_subarray_kadane(numbers[:idx], mode='max')
+
+    r1,_,_ = opt_subarray_kadane(numbers[idx+1:], mode='min')
+    r2,_,_ = opt_subarray_kadane(numbers[idx+1:], mode='max')
+
+    m1,_,_ = opt_subarray_pinned(numbers, idx, mode='min')
+    m2,_,_ = opt_subarray_pinned(numbers, idx, mode='max')
+    #
+    
+    L = set(range(l1, l2+1))
+    R = set(range(r1, r2+1))
+    M = set(range(m1, m2+1))
+    
+    return (L.union(R)).union(M)
+    
 def opt_subarray_bruteforce(numbers, fixed_index, mode='max'):
     best_l, best_r = -1, -1
     sgn = {'max': 1, 'min': -1}
@@ -95,7 +124,17 @@ for t in range(tests):
     print(f'Test {t}')
     print(a)
     
-    s1, l1, r1 = opt_subarray_bruteforce(a, idx, 'min')
+    v1=sum_variety_subarray_bruteforce(a)
+    v2=sum_variety_subarray_linear(a, idx)
+
+    print(v1)
+    print(v2)
+    
+    if(v1 != v2):
+        print('Fail.')
+        break
+        
+    '''s1, l1, r1 = opt_subarray_bruteforce(a, idx, 'min')
     s2, l2, r2 = opt_subarray_pinned(a, idx, 'min') 
     
     print(s1, l1, r1)
@@ -106,3 +145,5 @@ for t in range(tests):
     if(s1 != s2):
         print('Fail.')
         break
+        
+    '''
