@@ -1,5 +1,19 @@
-This function generates combinations in reverse lex. order.
+### Subsequence DP
+DP of the form:
 ```
+for i from 0 to n-1
+    for j from 0 to m-1
+        dp[i+1][j+1] = f(dp[i][j+1], dp[i][j])
+```
+With different _f_ and init values (see examples in the code).
+- Given sequences _s_ and _t_. Find the number of subsequences _s_ equal to _t_.
+- Given sequences _s_,_t_ and _c_. Find subsequence of _s_ equal to _t_ with minimum cost.
+
+### Bonus
+This function generates combinations in reverse lex. order.
+```cpp
+vector <vector <int>> combs;
+
 void comb(int x, int y, vector <int> &path){
     if(x <= 0 || y <= 0){
         combs.push_back(path);
@@ -16,7 +30,7 @@ void comb(int x, int y, vector <int> &path){
 ```
 
 And so does this function:
-```
+```cpp
 int dp_func(int i, int j){
     return (i >= j) ? 0 : 1e9;
 } 
