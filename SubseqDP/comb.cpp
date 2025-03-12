@@ -36,7 +36,6 @@ void comb_dp(int x, int y, vector <int> &path){
 // x-1  < y & x - 1 >= y - 1 -> (u, v) == (inf, 0) 
 // x-1  < y & x - 1 < y - 1  -> (u, v) == (inf, inf)
 void comb(int x, int y, vector <int> &path){
-    
     if(x <= 0 || y <= 0){
         combs.push_back(path);
         return;
