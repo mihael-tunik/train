@@ -70,22 +70,22 @@ int min_subseq_rec(vector <int> &s, vector <int> &t, vector <int> &cost, vector 
 
     walk(dp, s, t, cost, n, m, path, combs);
 
-    printf("%lu solution found: \n", combs.size());
     for(auto &c : combs)
         print_array(c);
+    printf("\n%lu solution found: \n\n", combs.size());    
 
     return dp[n][m];
 }
 
 int main(void){
-    int n = 50, m = 7;
+    int n = 15, m = 5;
     vector <int> s(n), t(m), cost(n);
     
     for(int i = 0; i < n; ++i)
-        s[i] = rand() % 2, cost[i] = rand() % 5;
+        s[i] = 1, cost[i] = 1;
 
     for(int j = 0; j < m; ++j)
-        t[j] = rand() % 2;
+        t[j] = 1;
         
     cout << "s: ";
     print_array(s);
@@ -93,7 +93,7 @@ int main(void){
     cout << "t: ";
     print_array(t);
 
-    cout << "cost: ";
+    cout << "c: ";
     print_array(cost);
 
     vector <int> argmin(0);

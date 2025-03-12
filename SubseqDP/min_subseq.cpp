@@ -111,7 +111,7 @@ int main(void){
         print_array(s);
         cout << "t: ";
         print_array(t);
-        cout << "cost: ";
+        cout << "c: ";
         print_array(cost);
 
         vector <int> argmin_1(0), argmin_2(0);
